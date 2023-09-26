@@ -1,0 +1,207 @@
+@import url('https://fonts.googleapis.com/css?family=Luckiest+Guy&display=swap');
+
+$accent: #7BA7BC;
+$paw: 1rem;
+$black: #333;
+
+*, *:before, *:after {
+	box-sizing: inherit;
+	font-family: inherit;
+	position: inherit;
+}
+
+body {
+	background: #feeeed /* me */;
+	margin: 0;
+	box-sizing: border-box;
+	position: relative;
+	display: grid;
+	place-items: center;
+	// min-height: 100vh;
+	font-size: 18px;
+	font-family: 'Luckiest Guy', sans-serif;
+	color: $accent;
+	grid-template-rows: 1fr 4fr;
+	overflow: hidden;
+	
+	#tracker {
+		width: 100vw;
+		height: 100vh;
+		position: fixed;
+		top: 0;
+		left: 0;
+		z-index: 5;
+	}
+}
+
+p {
+	font-size:calc(1.1rem + 1vw);
+	line-height: 1.4em;
+	margin: 0;
+	text-align: center;
+	color: $black;
+	
+	.highlight {
+		color: $accent;
+	}
+}
+
+main {
+	width: 100%;
+	max-width: 22rem;
+	display: flex;
+	align-items: center;
+	
+	button {
+		padding: .5em .8em .3em;
+		font-weight: bold;
+		background: $accent;
+		color: #fff;
+		border-radius: 5rem;
+		margin-right: -10rem;
+		cursor: none;
+		border: none;
+		font-size: 1.5rem;
+		line-height: 1;
+		letter-spacing: .05em;
+		color: $black;
+		border: .2rem solid $black;
+		transition: margin .05s ease;
+		transform-origin: center;
+		
+		&:focus, &:hover, &:active {
+			outline: none;
+			border: .3rem solid $black;
+		}
+	}
+	
+	#cursor {
+		position: absolute;
+		width: 16px;
+		left: 50%;
+		top: 50%;
+		z-index: -2;
+		transform-origin: center;
+		opacity: 0;
+		
+		&.swatted {
+			opacity: 1;
+			animation: swatted .15s ease-out;
+		}
+	}
+	
+	#Cat {
+		transform-origin: bottom center;
+		animation: tail 7s infinite alternate;
+		z-index: 0;
+		pointer-events: none;
+	}
+	
+	#Tail {
+		transform-origin: bottom;
+		animation: tail 2s ease infinite alternate;
+	}
+	
+	#Paw {
+		transform-origin: 16% 53%;
+		transform: rotate(-185deg);
+		transition: all .2s;
+		
+		&.ready-to-swat {
+			transform: rotate(-56deg);
+		}
+	}
+	
+	.swat {
+		animation: swat .2s;
+		filter: blur(10px);
+	}
+	
+	#Left-eye-pupil, #right-eye-pupil {
+		transform-origin: center;
+	}
+	
+	#Left-eye, #Right-eye {
+		animation: blink 8s infinite alternate;
+		transform-origin: 50% 26%;
+		transition: all .25s ease;
+	}
+}
+
+@keyframes tail {
+	0% {
+		transform: rotate(0deg);
+	}
+	27% {
+		transform: rotate(2deg);
+	}
+	69% {
+		transform: rotate(-2deg);
+	}
+	100% {
+		transform: rotate(0deg);
+	}
+}
+
+@keyframes swat {
+	0% {
+		transform: rotate(-20deg) scale(1.2);
+	}
+	
+	25% {
+		transform: rotate(-82.5deg) scale(1.2);
+	}
+	
+	50% {
+		transform: rotate(-185deg) scale(1.2);
+	}
+	51% {
+		transform: rotate(-20deg) scale(1.2);
+	}
+	
+	75.5% {
+		transform: rotate(-82.5deg) scale(1.2);
+	}
+	
+	100% {
+		transform: rotate(-185deg) scale(1.2);
+	}
+}
+
+@keyframes blink {
+	0% {
+		transform: scaleY(1);
+	}
+	39% {
+		transform: scaleY(1);
+	}
+	40% {
+		transform: scaleY(0);
+	}
+	41% {
+		transform: scaleY(1);
+	}
+	69% {
+		transform: scaleY(1);
+	}
+	70% {
+		transform: scaleY(0);
+	}
+	71% {
+		transform: scaleY(1);
+	}
+	100% {
+		transform: scaleY(1);
+	}
+}
+
+@keyframes swatted {
+	0% {
+		opacity: 1;
+		transform: scale(1) translate(0, 0) rotate(0deg);
+	}
+	100% {
+		opacity: 1;
+		transform: scale(3) translate(-15vw, 20vh) rotate(1080deg);
+	}
+}
